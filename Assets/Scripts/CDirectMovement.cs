@@ -7,37 +7,36 @@ using UnityEngine;
 /// </summary>
 public class CDirectMovement : _MonoBehaviour
 {
-    private const float LIMIT_POS_Y = 4.5f, LIMIT_POS_X = 2.44f;
+    //private const float LIMIT_POS_Y = 4.5f, LIMIT_POS_X = 2.44f;
 
     public Vector2 _direction;
     public float _speed;
+    public float _orgSpeed;
 
     void Move()
     {
         transform.Translate(_direction * _speed * Time.deltaTime);
     }
-    // Use this for initialization
-    void Start()
-    {
 
+    public void Stop()
+    {
+        _speed = 0.0f;
+    }
+
+    public void Resume()
+    {
+        _speed = _orgSpeed;
+    }
+
+    // Use this for initialization
+    protected virtual void Start()
+    {
+        _orgSpeed = _speed;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         Move();
-
-        Vector2 pos = transform.position;
-        if (Mathf.Abs(pos.x) > LIMIT_POS_X)
-        {
-            //pos.x = Mathf.Sign(pos.x) * LIMIT_POS_X;
-            Destroy(gameObject);
-        }
-        if (Mathf.Abs(pos.y) > LIMIT_POS_Y)
-        {
-            //pos.y = Mathf.Sign(pos.y) * LIMIT_POS_Y;
-            Destroy(gameObject);
-        }
-        //transform.position = pos;
     }
 }

@@ -2,30 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CinputShot : MonoBehaviour
+public class CinputShot : CShot
 {
-    public GameObject _laserPrefab;
-    public Transform[] _shotPoints;
-    public int shotCount = 1;
-
-    public void Shot()
-    {
-        for (int i = 0; i < shotCount; i++)
-        {
-            Instantiate(_laserPrefab, _shotPoints[i].position, _shotPoints[i].rotation);
-        }
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetMouseButton(0))
         {
             Shot();
         }

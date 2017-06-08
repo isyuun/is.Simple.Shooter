@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class CInputMovement : _MonoBehaviour
 {
-    private const float LIMIT_POS_Y = 4.5f, LIMIT_POS_X = 2.44f;
+    private const float LIMIT_POS_Y = 5.5f, LIMIT_POS_X = 2.44f;
 
     public float _speed;
 
