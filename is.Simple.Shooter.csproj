@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CAutoInputShot.cs" />
+    <Compile Include="Assets\Scripts\CAutoTargetShot.cs" />
     <Compile Include="Assets\Scripts\CDirectMovement.cs" />
     <Compile Include="Assets\Scripts\CEnemyDelayShot.cs" />
     <Compile Include="Assets\Scripts\CEnemyGenerator.cs" />
@@ -86,6 +87,8 @@
     <Compile Include="Assets\Scripts\CEnemyShot.cs" />
     <Compile Include="Assets\Scripts\CGameManager.cs" />
     <Compile Include="Assets\Scripts\CHomingMovement.cs" />
+    <Compile Include="Assets\Scripts\CHomingMovement2.cs" />
+    <Compile Include="Assets\Scripts\CHomingMovement3.cs" />
     <Compile Include="Assets\Scripts\CHpUpItem.cs" />
     <Compile Include="Assets\Scripts\CInputMovement.cs" />
     <Compile Include="Assets\Scripts\CLaserCountUpItem.cs" />
@@ -102,6 +105,7 @@
     <Compile Include="Assets\Scripts\CSpaceCollision.cs" />
     <Compile Include="Assets\Scripts\CStarCountUpItem.cs" />
     <Compile Include="Assets\Scripts\CSubShipCountUpItem.cs" />
+    <Compile Include="Assets\Scripts\CTargetMovement.cs" />
     <Compile Include="Assets\Scripts\CinputShot.cs" />
     <Compile Include="Assets\Scripts\IItem.cs" />
     <Compile Include="Assets\Scripts\_MonoBehaviour.cs" />

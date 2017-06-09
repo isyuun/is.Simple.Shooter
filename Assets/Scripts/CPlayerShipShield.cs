@@ -27,22 +27,25 @@ public class CPlayerShipShield : _MonoBehaviour
 
     private void SetShield()
     {
+        Debug.Log(this.GetMethodName() + shieldCount);
         _starCountText.text = shieldCount.ToString();
         if (shieldCount > 0 && shieldCount - 1 < shields.Length)
         {
             render.sprite = shields[shieldCount - 1];
             shield.isTrigger = false;
+            /*gameObject.SetActive(true);*/
         }
         else
         {
             render.sprite = null;
             shield.isTrigger = true;
+            /*gameObject.SetActive(false);*/
         }
     }
 
     public void SetShieldCountUp(int upCountValue)
     {
-        //Debug.Log(this.GetMethodName() + upCountValue);
+        Debug.Log(this.GetMethodName() + upCountValue);
         if (shieldCount < 3)
         {
             shieldCount += upCountValue;
@@ -58,7 +61,7 @@ public class CPlayerShipShield : _MonoBehaviour
 
     private void SetShieldCountDown()
     {
-        //Debug.Log(this.GetMethodName() + shieldCount);
+        Debug.Log(this.GetMethodName() + shieldCount);
         if (shieldCount > 0)
         {
             shieldCount--;
@@ -68,6 +71,7 @@ public class CPlayerShipShield : _MonoBehaviour
 
     void BlockShield(Collider2D collider)
     {
+        Debug.Log(this.GetMethodName() + collider.gameObject + ":" + collider.tag);
         if (shieldCount > 0)
         {
             if (collider.tag == "ENEMY")
@@ -82,7 +86,7 @@ public class CPlayerShipShield : _MonoBehaviour
             }
             else
             {
-
+                return;
             }
         }
         SetShieldCountDown();
@@ -90,13 +94,13 @@ public class CPlayerShipShield : _MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        //Debug.Log(this.GetMethodName() + collider.gameObject + ":" + collider.tag);
+        Debug.Log(this.GetMethodName() + collider.gameObject + ":" + collider.tag);
         BlockShield(collider);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log(this.GetMethodName() + collision.gameObject + ":" + collision.collider.tag);
+        Debug.Log(this.GetMethodName() + collision.gameObject + ":" + collision.collider.tag);
         BlockShield(collision.collider);
     }
 }

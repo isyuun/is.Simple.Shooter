@@ -17,7 +17,7 @@ public class CHomingMovement : CDirectMovement
         RIGHT = 0
     }
 
-    public static Quaternion FaceObject(Vector2 startingPosition, Vector2 targetPosition, FacingDirection facing)
+    private Quaternion FaceObject(Vector2 startingPosition, Vector2 targetPosition, FacingDirection facing)
     {
         Vector2 direction = targetPosition - startingPosition;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -26,20 +26,11 @@ public class CHomingMovement : CDirectMovement
     }
 
 
-    void Homing()
+    protected void Homing()
     {
         //Debug.Log(this.GetMethodName() + _target + ":" + _target.position);
-        //Quaternion rotation = FaceObject(transform.position, _target.position, FacingDirection.UP);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, _speed * Time.deltaTime);
-
-        Vector3 direction = _target.position - transform.position;
-        if (direction != Vector3.zero)
-        {
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, _speed * Time.deltaTime);
-            //transform.rotation = Quaternion.Euler(0f, 0f, angle + offset);
-        }
+        Quaternion rotation = FaceObject(transform.position, _target.position, FacingDirection.UP);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, _speed * Time.deltaTime);
     }
 
     private void Awake()
@@ -61,6 +52,5 @@ public class CHomingMovement : CDirectMovement
     protected override void Update()
     {
         base.Update();
-        //Homing();
     }
 }

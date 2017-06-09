@@ -9,10 +9,11 @@ public class CSubShipCountUpItem : _MonoBehaviour
     public void Dock()
     {
         GetComponent<CDirectMovement>().enabled = false;
-        GetComponent<CAutoInputShot>().enabled = true;
-        GetComponent<CAutoInputShot>().AutoFireTime = GameObject.Find("PlayerShip").GetComponent<CAutoInputShot>().AutoFireTime;
         GetComponent<CShipHealth>().enabled = true;
         GetComponent<CPlayerShipDamage>().enabled = true;
+        GetComponent<CAutoInputShot>().enabled = true;
+
+        GetComponent<CAutoInputShot>().AutoFireTime = GameObject.Find("PlayerShip").GetComponent<CAutoInputShot>().AutoFireTime;
 
         if (GameObject.Find("PlayerShip").GetComponent<CPlayerShipSubShip>().subShip.Count < 2)
         {
@@ -24,6 +25,14 @@ public class CSubShipCountUpItem : _MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        GetComponent<CDirectMovement>().enabled = true;
+        GetComponent<CShipHealth>().enabled = false;
+        GetComponent<CPlayerShipDamage>().enabled = false;
+        GetComponent<CAutoInputShot>().enabled = false;
+    }
+
     private void Update()
     {
         GetComponent<CAutoInputShot>().AutoFireTime = GameObject.Find("PlayerShip").GetComponent<CAutoInputShot>().AutoFireTime;
@@ -31,10 +40,12 @@ public class CSubShipCountUpItem : _MonoBehaviour
 
     private void OnDestroy()
     {
-        GameObject.Find("PlayerShip").GetComponent<CPlayerShipSubShip>().SetSubShipCountDown(gameObject);
+        if (GameObject.Find("PlayerShip") != null)
+        {
+            GameObject.Find("PlayerShip").GetComponent<CPlayerShipSubShip>().SetSubShipCountDown(gameObject);
+        }
         int score = int.Parse(CGameManager.ScoreText.text);
         score += (int)(GetComponent<CShipDamage>()._shipHealth._orgHP /*/ 10.0f*/);
         CGameManager.ScoreText.text = score.ToString();
-
     }
 }

@@ -33,7 +33,7 @@ public class CShipDamage : _MonoBehaviour
 
         ShowNitEffect(collider.transform.position);
 
-        int hp = _shipHealth.HpDown(40);
+        int hp = _shipHealth.HpDown(CGameManager.LaserDamage);
 
         if (hp <= 0)
         {

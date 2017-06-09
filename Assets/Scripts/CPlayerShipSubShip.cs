@@ -16,24 +16,19 @@ public class CPlayerShipSubShip : _MonoBehaviour
         {
             subShip.Add(gameObject);
         }
+        foreach (GameObject item in subShip)
+        {
+            if (item != null)
+            {
+                item.transform.SetParent(subPos[subShip.IndexOf(item)]);
+                item.transform.position = subPos[subShip.IndexOf(item)].position;
+            }
+        }
     }
 
     public void SetSubShipCountDown(GameObject gameObject)
     {
         Debug.Log(this.GetMethodName() + gameObject + ":" + subShip.Count);
         subShip.Remove(gameObject);
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-    }
-
-    private void Update()
-    {
-        foreach (GameObject item in subShip)
-        {
-            item.transform.position = subPos[subShip.IndexOf(item)].position;
-        }
     }
 }

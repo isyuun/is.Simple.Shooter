@@ -11,7 +11,7 @@ public class CShot : _MonoBehaviour
     public Transform[] _shotPoints;
     protected int shotCount = 1;
 
-    public float _shotDelayTime;
+    public float _shotDelayTime = CGameManager.ShotDelayTime;
 
     public void SetShotCountUp(int upCountValue)
     {
@@ -50,7 +50,6 @@ public class CShot : _MonoBehaviour
         Invoke("AutoShotCountDown", MAX_COUNTFIRE);
     }
 
-    // Update is called once per frame
     protected virtual void Update()
     {
     }

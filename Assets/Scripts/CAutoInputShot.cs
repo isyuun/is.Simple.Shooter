@@ -28,6 +28,8 @@ public class CAutoInputShot : CinputShot
         MAX_AUTOFIRE = 10.0f;
         coolDownTime = MAX_COOLDOWN;
         autoFireTime = MAX_AUTOFIRE;
+
+        _shotDelayTime = CGameManager.ShotDelayTime;
     }
 
     public void SetMaxAutoFireTime(float time)
@@ -36,6 +38,23 @@ public class CAutoInputShot : CinputShot
         MAX_AUTOFIRE = time;
         coolDownTime = MAX_COOLDOWN;
         autoFireTime = MAX_AUTOFIRE;
+    }
+
+    float _shotNextTime = 0;
+
+    void ShotAuto()
+    {
+        if (_shotNextTime == 0)
+        {
+            base.Shot();
+        }
+        _shotNextTime += Time.deltaTime;
+        if (_shotNextTime < _shotDelayTime)
+        {
+            return;
+        }
+        _shotNextTime = 0;
+        base.Shot();
     }
 
     // Use this for initialization
@@ -52,7 +71,7 @@ public class CAutoInputShot : CinputShot
         {
             if (Input.GetKey(KeyCode.LeftControl) || Input.GetMouseButton(0))
             {
-                Shot();
+                ShotAuto();
             }
             autoFireTime -= Time.deltaTime;
             coolDownTime = MAX_COOLDOWN;
