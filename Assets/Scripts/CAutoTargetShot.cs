@@ -23,7 +23,7 @@ public class CAutoTargetShot : MonoBehaviour
             yield return new WaitForSeconds(_shotDelayTime);
 
             // 적기 목록을 구함
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("ENEMY");
 
             // 적기가 없으면 패쓰
             if (enemies.Length <= 0) continue;

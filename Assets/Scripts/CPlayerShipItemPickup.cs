@@ -29,7 +29,7 @@ public class CPlayerShipItemPickup : _MonoBehaviour
         }
         else if (collision.tag == "SUBSHIP")
         {
-            collision.GetComponent<CSubShipCountUpItem>().Dock();
+            collision.GetComponent<CMiniShipCountUpItem>().Dock();
             //collision.SendMessage("Dock", SendMessageOptions.DontRequireReceiver);
         }
     }
