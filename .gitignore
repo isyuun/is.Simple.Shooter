@@ -72,3 +72,5 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+/is.Simple.Shooter_Data
+/is.Simple.Shooter.exe
